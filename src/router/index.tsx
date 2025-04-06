@@ -1,20 +1,23 @@
-
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-// 使用lazy实现组件懒加载
-const Login = lazy(() => import('../pages/login'));
-const Dashboard = lazy(() => import('../pages/dashboard'));
+const Login = lazy(() => import('@/pages/login'));
+const Dashboard = lazy(() => import('@/pages/dashboard'));
 
-const routes = createBrowserRouter([
+const constantRoutes = [
   {
     path: '/login',
     element: <Login />,
   },
+]
+
+const asyncRoutes = [
   {
     path: '/',
     element: <Dashboard />
   },
-]);
+]
+
+const routes = createBrowserRouter([...constantRoutes, ...asyncRoutes]);
 
 export default routes;
